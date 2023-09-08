@@ -34,7 +34,7 @@ public class ProductController {
     @PostMapping("/new")
     public ModelAndView createProduct(@ModelAttribute("product") Product product){
         int randomId = (int)(Math.random() * 10000);
-        product.setId(randomId);//For demo purpose only
+        product.setId(randomId);
 
         this.productService.save(product);
 
@@ -55,7 +55,6 @@ public class ProductController {
     @GetMapping("/index")
     public ModelAndView showIndexPage(){
         ModelAndView modelAndView = new ModelAndView("index");
-        // Thêm các logic khác nếu cần
         return modelAndView;
     }
 }
