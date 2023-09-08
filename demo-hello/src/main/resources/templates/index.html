@@ -6,20 +6,6 @@
     <title>Products</title>
 </head>
 <body>
-    <h1>Products</h1>
-    <p><a th:href="@{/new}">Add new product</a></p>
-    <p>There are <span th:if="${products}" th:text="${#lists.size(products)}"></span> products in this list.</p>
-    <table border="1">
-        <tr>
-            <td>Code</td>
-            <td>Name</td>
-            <td>Price</td>
-        </tr>
-        <tr th:each="product : ${products}">
-            <td th:text="${product.id}"></td>
-            <td><a th:href="@{'/view?id=' + ${product.id}}" th:text="${product.name}"></a></td>
-            <td th:text="${product.price}"></td>
-        </tr>
-    </table>
+    This is from the index.html
 </body>
 </html>
