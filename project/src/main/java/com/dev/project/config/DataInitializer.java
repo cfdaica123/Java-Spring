@@ -12,7 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
-import java.util.List;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
@@ -29,8 +28,29 @@ public class DataInitializer implements CommandLineRunner {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    // Thêm khai báo biến rolesInitialized ở đây
+    private static boolean rolesInitialized = false;
+
     @Override
     public void run(String... args) throws Exception {
+
+        // Create roles if not already initialized
+        if (!rolesInitialized) {
+            Role adminRole = roleRepository.findByRoleName("ADMIN");
+            if (adminRole == null) {
+                adminRole = new Role("ADMIN");
+                roleRepository.save(adminRole);
+            }
+
+            Role userRole = roleRepository.findByRoleName("USER");
+            if (userRole == null) {
+                userRole = new Role("USER");
+                roleRepository.save(userRole);
+            }
+
+            rolesInitialized = true;
+        }
+
         // Kiểm tra xem đã có user với username "cp_son" chưa
         User existingUser = userRepository.findByUsername("cp_son").orElse(null);
 

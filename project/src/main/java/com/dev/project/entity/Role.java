@@ -15,6 +15,14 @@ public class Role {
     @ManyToMany(mappedBy = "roles")
     private List<User> users;
 
+    public Role() {
+        
+    }
+
+    public Role(String roleName) {
+        this.roleName = roleName;
+    }
+
     // Getters and setters
     public Long getRoleId() {
         return roleId;
