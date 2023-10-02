@@ -1,4 +1,4 @@
-package com.dev.project.config;
+package com.dev.project.config.Data;
 
 import com.dev.project.entity.Position;
 import com.dev.project.repository.PositionRepository;
@@ -28,13 +28,14 @@ public class PositionInitializer implements CommandLineRunner {
     }
 
     private void initializePositions() {
-        createPositionIfNotExists("Chủ tịch");
-        createPositionIfNotExists("Giám đốc");
-        createPositionIfNotExists("Phó giám đốc");
-        createPositionIfNotExists("Trưởng phòng ban");
-        createPositionIfNotExists("Phó phòng ban");
-        createPositionIfNotExists("Nhân viên phòng ban");
+        createPositionIfNotExists("Chairperson"); // Chủ tịch
+        createPositionIfNotExists("Director"); // Giám đốc
+        createPositionIfNotExists("Deputy Director"); // Phó giám đốc
+        createPositionIfNotExists("Department Head"); // Trưởng phòng ban
+        createPositionIfNotExists("Deputy Department Head"); // Phó phòng ban
+        createPositionIfNotExists("Department Staff"); // Nhân viên phòng ban
     }
+    
 
     private void createPositionIfNotExists(String positionName) {
         Position existingPosition = positionRepository.findByPositionName(positionName);

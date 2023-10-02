@@ -1,4 +1,4 @@
-package com.dev.project.config;
+package com.dev.project.config.Data;
 
 import com.dev.project.entity.Role;
 import com.dev.project.repository.RoleRepository;

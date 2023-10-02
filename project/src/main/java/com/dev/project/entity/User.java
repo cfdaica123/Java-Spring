@@ -16,6 +16,8 @@ public class User {
 
     private String password;
 
+    private boolean enabled;
+
     @OneToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
@@ -29,13 +31,14 @@ public class User {
     private List<Role> roles;
 
     public User() {
-        // Default constructor
+        
     }
 
     public User(Employee employee, PasswordEncoder passwordEncoder) {
         this.employee = employee;
         generateUsername();
         generatePassword(passwordEncoder);
+        this.enabled = true;
     }
 
     public Long getUserId() {
@@ -62,6 +65,14 @@ public class User {
         this.password = password;
     }
 
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
     public Employee getEmployee() {
         return employee;
     }
@@ -84,20 +95,16 @@ public class User {
             String lastName = employee.getLastName();
 
             if (firstName != null && lastName != null) {
-                // Lấy chữ cái đầu tiên của họ và tên
                 String firstCharFirstName = firstName.substring(0, 1).toLowerCase();
                 String firstCharLastName = lastName.substring(0, 1).toLowerCase();
 
-                // Tạo username theo quy tắc
                 username = firstCharFirstName + firstCharLastName + "_" + lastName.toLowerCase();
             }
         }
     }
 
     public void generatePassword(PasswordEncoder passwordEncoder) {
-        // Ở đây bạn có thể tạo một mật khẩu ngẫu nhiên hoặc sử dụng quy tắc cụ thể
-        // Ví dụ: password = "defaultPassword";
-        password = passwordEncoder.encode("defaultPassword");
+        password = passwordEncoder.encode("1234@");
     }
 
     @Override
@@ -106,6 +113,7 @@ public class User {
                 "userId=" + userId +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", enabled=" + enabled +
                 ", employee=" + employee +
                 ", roles=" + roles +
                 '}';
