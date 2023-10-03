@@ -1,5 +1,7 @@
 package com.dev.project.entity;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,9 +12,13 @@ public class Language {
     @Column(name = "language_id")
     private Long languageId;
 
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
+    @ManyToMany
+    @JoinTable(
+            name = "employee_languages",
+            joinColumns = @JoinColumn(name = "language_id"),
+            inverseJoinColumns = @JoinColumn(name = "employee_id")
+    )
+    private List<Employee> employees;
 
     @Column(name = "language_name")
     private String languageName;
@@ -21,23 +27,23 @@ public class Language {
     public Long getLanguageId() {
         return languageId;
     }
-    
+
     public void setLanguageId(Long languageId) {
         this.languageId = languageId;
     }
-    
-    public Employee getEmployee() {
-        return employee;
+
+    public List<Employee> getEmployees() {
+        return employees;
     }
-    
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
-    
+
     public String getLanguageName() {
         return languageName;
     }
-    
+
     public void setLanguageName(String languageName) {
         this.languageName = languageName;
     }
@@ -46,7 +52,7 @@ public class Language {
     public String toString() {
         return "Language{" +
                 "languageId=" + languageId +
-                ", employee=" + employee +
+                ", employees=" + employees +
                 ", languageName='" + languageName + '\'' +
                 '}';
     }
