@@ -1,6 +1,8 @@
 package com.dev.project.config.Data;
 
+import com.dev.project.entity.City;
 import com.dev.project.entity.Office;
+import com.dev.project.repository.CityRepository;
 import com.dev.project.repository.OfficeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -15,14 +17,17 @@ public class OfficeInitializer implements CommandLineRunner {
     @Autowired
     private OfficeRepository officeRepository;
 
+    @Autowired
+    private CityRepository cityRepository;
+
     @Override
     public void run(String... args) throws Exception {
         // Thêm các văn phòng nếu chưa tồn tại
         List<OfficeInfo> officeInfos = Arrays.asList(
-                new OfficeInfo("ItCompanyHoChiMinh", "268 Ly Thuong Kiet, Ward 14, District 10, Ho Chi Minh City, Vietnam"),
-                new OfficeInfo("ItCompanyDaNang", "54 Nguyen Luong Bang, Hoa Khanh Bac, Lien Chieu, Da Nang 550000, Vietnam"),
-                new OfficeInfo("ItCompanyHue", "176 Tran Phu, Ward, Hue City, Thua Thien Hue, Vietnam"),
-                new OfficeInfo("ItCompanyHaNoi", "2R3V+XGX, Dong Tam, Hai Ba Trung, Hanoi, Vietnam")
+                new OfficeInfo("ItCompany", "268 Ly Thuong Kiet, Ward 14, District 10", "Ho Chi Minh"),
+                new OfficeInfo("ItCompany", "54 Nguyen Luong Bang, Hoa Khanh Bac, Lien Chieu", "Da Nang"),
+                new OfficeInfo("ItCompany", "176 Tran Phu", "Hue"),
+                new OfficeInfo("ItCompany", "2R3V+XGX, Dong Tam, Hai Ba Trung", "Ha Noi")
         );
 
         for (OfficeInfo officeInfo : officeInfos) {
@@ -31,6 +36,11 @@ public class OfficeInitializer implements CommandLineRunner {
                 Office office = new Office();
                 office.setOfficeName(officeInfo.officeName);
                 office.setLocation(officeInfo.location);
+
+                // Lấy thông tin thành phố từ tên thành phố
+                City city = cityRepository.findByCityName(officeInfo.cityName);
+                office.setCity(city);
+
                 officeRepository.save(office);
             }
         }
@@ -39,10 +49,12 @@ public class OfficeInitializer implements CommandLineRunner {
     private static class OfficeInfo {
         private final String officeName;
         private final String location;
+        private final String cityName;
 
-        public OfficeInfo(String officeName, String location) {
-            this.officeName = officeName;
+        public OfficeInfo(String officeName, String location, String cityName) {
+            this.officeName = officeName + cityName;
             this.location = location;
+            this.cityName = cityName;
         }
     }
 }

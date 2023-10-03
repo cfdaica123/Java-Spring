@@ -13,7 +13,7 @@ public class City {
     private String cityName;
 
     @OneToMany(mappedBy = "city")
-    private List<OfficeCity> officeCities;
+    private List<Office> offices;
 
     // Getters and setters
     public Long getCityId() {
@@ -32,12 +32,12 @@ public class City {
         this.cityName = cityName;
     }
     
-    public List<OfficeCity> getOfficeCities() {
-        return officeCities;
+    public List<Office> getOffices() {
+        return offices;
     }
     
-    public void setOfficeCities(List<OfficeCity> officeCities) {
-        this.officeCities = officeCities;
+    public void setOffices(List<Office> offices) {
+        this.offices = offices;
     }
 
     @Override
@@ -45,7 +45,7 @@ public class City {
         return "City{" +
                 "cityId=" + cityId +
                 ", cityName='" + cityName + '\'' +
-                ", officeCities=" + officeCities +
+                ", offices=" + offices +
                 '}';
     }
 }

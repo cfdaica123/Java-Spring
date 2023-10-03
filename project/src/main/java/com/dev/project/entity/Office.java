@@ -17,6 +17,10 @@ public class Office {
     @Column(name = "location")
     private String location;
 
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    private City city;
+
     @OneToMany(mappedBy = "office")
     private List<Employee> employees;
 
@@ -45,6 +49,14 @@ public class Office {
         this.location = location;
     }
     
+    public City getCity() {
+        return city;
+    }
+    
+    public void setCity(City city) {
+        this.city = city;
+    }
+    
     public List<Employee> getEmployees() {
         return employees;
     }
@@ -59,6 +71,7 @@ public class Office {
                 "officeId=" + officeId +
                 ", officeName='" + officeName + '\'' +
                 ", location='" + location + '\'' +
+                ", city=" + city +
                 ", employees=" + employees +
                 '}';
     }
