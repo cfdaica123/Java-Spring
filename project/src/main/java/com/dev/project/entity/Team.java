@@ -24,35 +24,60 @@ public class Team {
     )
     private List<Employee> members;
 
-    // Getters and setters
+    // Getters and setters 
+
+    /**
+     * @return Long return the teamId
+     */
     public Long getTeamId() {
         return teamId;
     }
-    
+
+    /**
+     * @param teamId the teamId to set
+     */
     public void setTeamId(Long teamId) {
         this.teamId = teamId;
     }
-    
+
+    /**
+     * @return String return the teamName
+     */
     public String getTeamName() {
         return teamName;
     }
-    
+
+    /**
+     * @param teamName the teamName to set
+     */
     public void setTeamName(String teamName) {
         this.teamName = teamName;
     }
-    
+
+    /**
+     * @return Project return the project
+     */
     public Project getProject() {
         return project;
     }
-    
+
+    /**
+     * @param project the project to set
+     */
     public void setProject(Project project) {
         this.project = project;
     }
-    
+
+    /**
+     * @return List<Employee> return the members
+     */
     public List<Employee> getMembers() {
         return members;
     }
-    
+
+    /**
+     * @param members the members to set
+     */
     public void setMembers(List<Employee> members) {
         this.members = members;
     }

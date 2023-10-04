@@ -34,12 +34,7 @@ public class Employee {
     @JoinColumn(name = "office_id")
     private Office office;
 
-    @ManyToMany
-    @JoinTable(
-            name = "employee_teams",
-            joinColumns = @JoinColumn(name = "employee_id"),
-            inverseJoinColumns = @JoinColumn(name = "team_id")
-    )
+    @ManyToMany(mappedBy = "members")
     private List<Team> teams;
 
     @OneToMany(mappedBy = "employee")
@@ -59,8 +54,9 @@ public class Employee {
     @OneToMany(mappedBy = "employee")
     private List<LeaveRequest> leaveRequests;
 
-    @OneToMany(mappedBy = "employee")
-    private List<Nationality> nationalities;
+    @ManyToOne
+    @JoinColumn(name = "nationality_id")
+    private Nationality nationality;
 
     @OneToMany(mappedBy = "employee")
     private List<Skill> skills;
@@ -74,7 +70,8 @@ public class Employee {
     @OneToOne(mappedBy = "employee")
     private Student student;
 
-    // Getter and setter for employeeId
+    // Getters and setters
+
     public Long getEmployeeId() {
         return employeeId;
     }
@@ -83,7 +80,6 @@ public class Employee {
         this.employeeId = employeeId;
     }
 
-    // Getter and setter for firstName
     public String getFirstName() {
         return firstName;
     }
@@ -92,7 +88,6 @@ public class Employee {
         this.firstName = firstName;
     }
 
-    // Getter and setter for lastName
     public String getLastName() {
         return lastName;
     }
@@ -101,7 +96,6 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    // Getter and setter for birthdate
     public Date getBirthdate() {
         return birthdate;
     }
@@ -110,7 +104,6 @@ public class Employee {
         this.birthdate = birthdate;
     }
 
-    // Getter and setter for hireDate
     public Date getHireDate() {
         return hireDate;
     }
@@ -119,7 +112,6 @@ public class Employee {
         this.hireDate = hireDate;
     }
 
-    // Getter and setter for position
     public Position getPosition() {
         return position;
     }
@@ -128,7 +120,14 @@ public class Employee {
         this.position = position;
     }
 
-    // Getter and setter for department
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public Department getDepartment() {
         return department;
     }
@@ -137,7 +136,6 @@ public class Employee {
         this.department = department;
     }
 
-    // Getter and setter for office
     public Office getOffice() {
         return office;
     }
@@ -146,7 +144,6 @@ public class Employee {
         this.office = office;
     }
 
-    // Getter and setter for teams
     public List<Team> getTeams() {
         return teams;
     }
@@ -155,7 +152,6 @@ public class Employee {
         this.teams = teams;
     }
 
-    // Getter and setter for salaries
     public List<Salary> getSalaries() {
         return salaries;
     }
@@ -164,7 +160,6 @@ public class Employee {
         this.salaries = salaries;
     }
 
-    // Getter and setter for trainings
     public List<Training> getTrainings() {
         return trainings;
     }
@@ -173,7 +168,6 @@ public class Employee {
         this.trainings = trainings;
     }
 
-    // Getter and setter for languages
     public List<Language> getLanguages() {
         return languages;
     }
@@ -182,7 +176,6 @@ public class Employee {
         this.languages = languages;
     }
 
-    // Getter and setter for leaveRequests
     public List<LeaveRequest> getLeaveRequests() {
         return leaveRequests;
     }
@@ -191,16 +184,11 @@ public class Employee {
         this.leaveRequests = leaveRequests;
     }
 
-    // Getter and setter for nationalities
-    public List<Nationality> getNationalities() {
-        return nationalities;
+    public Nationality getNationalities() {
+        return nationality;
     }
+    
 
-    public void setNationalities(List<Nationality> nationalities) {
-        this.nationalities = nationalities;
-    }
-
-    // Getter and setter for skills
     public List<Skill> getSkills() {
         return skills;
     }
@@ -209,7 +197,6 @@ public class Employee {
         this.skills = skills;
     }
 
-    // Getter and setter for employmentContracts
     public List<EmploymentContract> getEmploymentContracts() {
         return employmentContracts;
     }
@@ -218,7 +205,6 @@ public class Employee {
         this.employmentContracts = employmentContracts;
     }
 
-    // Getter and setter for lecturer
     public Lecturer getLecturer() {
         return lecturer;
     }
@@ -227,7 +213,6 @@ public class Employee {
         this.lecturer = lecturer;
     }
 
-    // Getter and setter for student
     public Student getStudent() {
         return student;
     }
@@ -236,16 +221,10 @@ public class Employee {
         this.student = student;
     }
 
-    // toString method
     @Override
     public String toString() {
         return "Employee{" +
-                "employeeId=" + employeeId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", birthdate=" + birthdate +
-                ", hireDate=" + hireDate +
-                ", position=" + position +
+                "user=" + user +
                 ", department=" + department +
                 ", office=" + office +
                 ", teams=" + teams +
@@ -253,11 +232,11 @@ public class Employee {
                 ", trainings=" + trainings +
                 ", languages=" + languages +
                 ", leaveRequests=" + leaveRequests +
-                ", nationalities=" + nationalities +
+                ", nationality=" + nationality +
                 ", skills=" + skills +
                 ", employmentContracts=" + employmentContracts +
                 ", lecturer=" + lecturer +
                 ", student=" + student +
-                '}';
+                "}";
     }
 }

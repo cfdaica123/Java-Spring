@@ -1,4 +1,7 @@
+// Nationality.java
 package com.dev.project.entity;
+
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -10,36 +13,25 @@ public class Nationality {
     @Column(name = "nationality_id")
     private Long nationalityId;
 
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
-
-    @Column(name = "nationality_name")
+    @Column(name = "nationality_name", unique = true)
     private String nationalityName;
 
-    // Getters and setters
+    @OneToMany(mappedBy = "nationality")
+    private List<Employee> employees;
+
+    // Getter và setter
     public Long getNationalityId() {
         return nationalityId;
     }
-    
+
     public void setNationalityId(Long nationalityId) {
         this.nationalityId = nationalityId;
     }
-    
-    // Getters and setters for employee
-    public Employee getEmployee() {
-        return employee;
-    }
-    
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-    
-    // Getters and setters for nationalityName
+
     public String getNationalityName() {
         return nationalityName;
     }
-    
+
     public void setNationalityName(String nationalityName) {
         this.nationalityName = nationalityName;
     }
@@ -48,8 +40,8 @@ public class Nationality {
     public String toString() {
         return "Nationality{" +
                 "nationalityId=" + nationalityId +
-                ", employee=" + employee +
                 ", nationalityName='" + nationalityName + '\'' +
+                ", employees=" + employees +
                 '}';
     }
 }
