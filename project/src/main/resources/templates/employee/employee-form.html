@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Form</title>
+</head>
+<body>
+    <h2>Employee Form</h2>
+    <form th:action="@{/employees/saveEmployee}" th:object="${employee}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <label>Name:</label>
+        <input type="text" th:field="*{name}" required>
+        <br>
+        <label>Email:</label>
+        <input type="email" th:field="*{email}" required>
+        <br>
+        <!-- Thêm các trường và nút Submit khác -->
+        <br>
+        <button type="submit">Save</button>
+    </form>
+    <br>
+    <a th:href="@{/employees}">Back to Employee List</a>
+</body>
+</html>

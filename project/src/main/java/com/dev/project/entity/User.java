@@ -1,7 +1,5 @@
 package com.dev.project.entity;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -34,10 +32,10 @@ public class User {
         
     }
 
-    public User(Employee employee, PasswordEncoder passwordEncoder) {
+    public User(Employee employee) {
         this.employee = employee;
         generateUsername();
-        generatePassword(passwordEncoder);
+        generatePassword();
         this.enabled = true;
     }
 
@@ -103,8 +101,8 @@ public class User {
         }
     }
 
-    public void generatePassword(PasswordEncoder passwordEncoder) {
-        password = passwordEncoder.encode("1234@");
+    public void generatePassword() {
+        password = "1234@";
     }
 
     @Override

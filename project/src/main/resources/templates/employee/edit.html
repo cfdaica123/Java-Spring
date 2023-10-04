@@ -1,0 +1,22 @@
+<!-- src/main/resources/templates/employee/edit.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Employee</title>
+</head>
+<body>
+
+<h2>Edit Employee</h2>
+
+<form th:action="@{/employees/edit/{id}(id=${employee.employeeId})}" th:object="${employee}" method="post">
+    <!-- Add form fields for employee properties -->
+    <label>First Name: <input type="text" th:field="*{firstName}" /></label><br/>
+    <label>Last Name: <input type="text" th:field="*{lastName}" /></label><br/>
+    <!-- Add other form fields as needed -->
+    <input type="submit" value="Update Employee"/>
+</form>
+
+</body>
+</html>
