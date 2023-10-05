@@ -1,0 +1,48 @@
+<!-- list.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sinh Vien List</title>
+</head>
+<body>
+
+<h2>Danh Sach Sinh Vien</h2>
+
+<a href="/sinh-vien/form">Them Sinh Vien</a>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Ho Ten</th>
+        <th>Ngay Sinh</th>
+        <th>Gioi Tinh</th>
+        <th>Số điện thoại</th>
+        <th>Địa chỉ</th>
+        <th>Lop</th>
+        <th>Diem TB</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="sinhVien : ${sinhVienList}">
+        <td th:text="${sinhVien.id}"></td>
+        <td th:text="${sinhVien.hoTen}"></td>
+        <td th:text="${sinhVien.ngaySinh}"></td>
+        <td th:text="${sinhVien.gioiTinh}"></td>
+        <td th:text="${sinhVien.soDienThoai}"></td>
+        <td th:text="${sinhVien.diaChi}"></td>
+        <td th:text="${sinhVien.lop}"></td>
+        <td th:text="${sinhVien.diemTB}"></td>
+        <td>
+            <a th:href="@{/sinh-vien/update(sinhVienId=${sinhVien.id})}">Sua</a>
+            |
+            <a th:href="@{/sinh-vien/delete(sinhVienId=${sinhVien.id})}">Xoa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Giảng viên</title>
+</head>
+<body>
+
+<h2>Thêm/Sửa Giảng viên</h2>
+
+<form th:action="@{/giang-vien/save}" th:object="${giangVien}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+
+    <label>Họ Tên: </label>
+    <input type="text" th:field="*{hoTen}"/><br/>
+
+    <label>Ngay Sinh: </label>
+    <input type="date" th:field="*{ngaySinh}" placeholder="yyyy-MM-dd"/><br/>
+
+    <label>Số điện thoại: </label>
+    <input type="text" th:field="*{soDienThoai}"/><br/>
+
+    <label>Địa chỉ: </label>
+    <input type="text" th:field="*{diaChi}"/><br/>
+
+    <label>Chuyên Ngành: </label>
+    <input type="text" th:field="*{chuyenNganh}"/><br/>
+    
+    <!-- Các trường khác nếu có -->
+
+    <input type="submit" value="Lưu"/>
+</form>
+
+<!-- Nút quay lại -->
+<a th:href="@{/giang-vien}">Quay Lại</a>
+
+</body>
+</html>

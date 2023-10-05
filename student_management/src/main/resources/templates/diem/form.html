@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Điểm</title>
+</head>
+<body>
+
+<h2>Thêm/Sửa Điểm</h2>
+
+<form th:action="@{/diem/save}" th:object="${diem}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+
+    <label>Điểm:</label>
+    <input type="text" th:field="*{diem}"/><br/>
+
+    <label>Môn Học:</label>
+    <select th:field="*{monHoc.id}">
+        <option th:each="monHoc : ${monHocList}" th:value="${monHoc.id}" th:text="${monHoc.tenMonHoc}"></option>
+    </select><br/>
+
+    <label>Sinh Viên:</label>
+    <select th:field="*{sinhVien.id}">
+        <option th:each="sinhVien : ${sinhVienList}" th:value="${sinhVien.id}" th:text="${sinhVien.hoTen}"></option>
+    </select><br/>
+
+    <input type="submit" value="Lưu"/>
+</form>
+
+<!-- Nút quay lại -->
+<a th:href="@{/diem}">Quay Lại</a>
+
+</body>
+</html>

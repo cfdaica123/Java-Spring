@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sinh Vien Form</title>
+</head>
+<body>
+
+<h2>Them/Sua Sinh Vien</h2>
+
+<form th:action="@{/sinh-vien/save}" th:object="${sinhVien}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+
+    <label>Ho Ten: </label>
+    <input type="text" th:field="*{hoTen}"/><br/>
+
+    <label>Ngay Sinh: </label>
+    <input type="date" th:field="*{ngaySinh}" placeholder="yyyy-MM-dd"/><br/>
+
+    <label>Gioi Tinh: </label>
+    <select th:field="*{gioiTinh}">
+        <option th:each="gender : ${T(com.dev.student_management.entity.SinhVien$GioiTinh).values()}"
+                th:value="${gender}" th:text="${#strings.capitalize(gender.name())}"></option>
+    </select><br/>
+
+    <label>Số điện thoại: </label>
+    <input type="text" th:field="*{soDienThoai}"/><br/>
+
+    <label>Địa chỉ: </label>
+    <input type="text" th:field="*{diaChi}"/><br/>
+    
+    <label>Lop: </label>
+    <input type="text" th:field="*{lop}"/><br/>
+
+    <label>Diem TB: </label>
+    <input type="number" th:field="*{diemTB}"/><br/>
+
+    <input type="submit" value="Luu"/>
+</form>
+
+<!-- Nút quay lại -->
+<a th:href="@{/sinh-vien}" class="btn-back">Quay Lại</a>
+
+</body>
+</html>

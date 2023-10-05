@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách Môn Học</title>
+</head>
+<body>
+
+<h2>Danh sách Môn Học</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tên Môn Học</th>
+        <th>Số Tín chỉ</th>
+        <th>Tên Giảng Viên</th> <!-- Thêm cột mới -->
+        <th>Thao Tác</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="monHoc : ${monHocList}">
+        <td th:text="${monHoc.id}"></td>
+        <td th:text="${monHoc.tenMonHoc}"></td>
+        <td th:text="${monHoc.soTinChi}"></td>
+        <td th:text="${monHoc.giangVien.hoTen}"></td> <!-- Thêm ô mới -->
+        <td>
+            <a th:href="@{/mon-hoc/update(monHocId=${monHoc.id})}">Sửa</a>
+            |
+            <a th:href="@{/mon-hoc/delete(monHocId=${monHoc.id})}">Xóa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/mon-hoc/form}" class="btn-add">Thêm Môn Học</a>
+
+</body>
+</html>

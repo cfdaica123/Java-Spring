@@ -1,7 +1,7 @@
 package com.dev.student_management.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.Objects;
 
 @Entity
 public class Diem {
@@ -21,7 +21,6 @@ public class Diem {
     private double diem;
 
     // Getter, Setter
-    
 
     /**
      * @return Long return the id
@@ -79,18 +78,33 @@ public class Diem {
         this.diem = diem;
     }
 
-    public Diem (){
-        
+    public Diem() {
+
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Diem diem1 = (Diem) o;
+        return Double.compare(diem1.diem, diem) == 0 &&
+                Objects.equals(id, diem1.id) &&
+                Objects.equals(sinhVien, diem1.sinhVien) &&
+                Objects.equals(monHoc, diem1.monHoc);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, sinhVien, monHoc, diem);
     }
 
     @Override
     public String toString() {
         return "Diem{" +
-            "id=" + id +
-            ", sinhVien=" + sinhVien +
-            ", monHoc=" + monHoc +
-            ", diem=" + diem +
-            '}';
+                "id=" + id +
+                ", sinhVien=" + sinhVien +
+                ", monHoc=" + monHoc +
+                ", diem=" + diem +
+                '}';
     }
 }
-

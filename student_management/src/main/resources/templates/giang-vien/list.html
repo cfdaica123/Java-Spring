@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách Giảng viên</title>
+</head>
+<body>
+
+<h2>Danh sách Giảng viên</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Họ Tên</th>
+        <th>Ngày sinh</th>
+        <th>Số điện thoại</th>
+        <th>Địa chỉ</th>
+        <th>Chuyên Ngành</th>
+        <!-- Các cột khác nếu có -->
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="giangVien : ${giangVienList}">
+        <td th:text="${giangVien.id}"></td>
+        <td th:text="${giangVien.hoTen}"></td>
+        <td th:text="${giangVien.ngaySinh}"></td>
+        <td th:text="${giangVien.soDienThoai}"></td>
+        <td th:text="${giangVien.diaChi}"></td>
+        <td th:text="${giangVien.chuyenNganh}"></td>
+        <!-- Các cột khác nếu có -->
+        <td>
+            <a th:href="@{/giang-vien/update(giangVienId=${giangVien.id})}">Sửa</a>
+            <a th:href="@{/giang-vien/delete(giangVienId=${giangVien.id})}">Xóa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/giang-vien/form}">Thêm Giảng viên mới</a>
+
+</body>
+</html>

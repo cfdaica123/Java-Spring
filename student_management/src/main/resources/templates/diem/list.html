@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách Điểm</title>
+</head>
+<body>
+
+<h2>Danh sách Điểm</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Điểm</th>
+        <th>Môn Học</th>
+        <th>Sinh Viên</th>
+        <th>Thao Tác</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="diem : ${diemList}">
+        <td th:text="${diem.id}"></td>
+        <td th:text="${diem.diem}"></td>
+        <td th:text="${diem.monHoc.tenMonHoc}"></td>
+        <td th:text="${diem.sinhVien.hoTen}"></td>
+        <td>
+            <a th:href="@{/diem/update(diemId=${diem.id})}">Sửa</a>
+            |
+            <a th:href="@{/diem/delete(diemId=${diem.id})}">Xóa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/diem/form}" class="btn-add">Thêm Điểm</a>
+
+</body>
+</html>

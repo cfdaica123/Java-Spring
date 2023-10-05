@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Môn Học</title>
+</head>
+<body>
+
+<h2>Thêm/Sửa Môn Học</h2>
+
+<form th:action="@{/mon-hoc/save}" th:object="${monHoc}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+
+    <label>Tên Môn Học: </label>
+    <input type="text" th:field="*{tenMonHoc}"/><br/>
+
+    <label>Số Tín chỉ: </label>
+    <input type="number" th:field="*{soTinChi}"/><br/>
+
+    <!-- Dropdown để chọn giảng viên -->
+    <label>Chọn Giảng Viên: </label>
+    <select th:field="*{giangVien.id}">
+        <option th:each="giangVien : ${giangVienList}" th:value="${giangVien.id}" th:text="${giangVien.hoTen}"></option>
+    </select><br/>
+
+    <input type="submit" value="Lưu"/>
+</form>
+
+<!-- Nút quay lại -->
+<a th:href="@{/mon-hoc}" class="btn-back">Quay Lại</a>
+
+</body>
+</html>

@@ -65,6 +65,11 @@ public class MonHoc {
         return giangVien;
     }
 
+    public void setGiangVien(GiangVien giangVien) {
+        this.giangVien = giangVien;
+    }
+
+
     // Constructor
     public MonHoc() {
     }
