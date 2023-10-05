@@ -9,30 +9,43 @@ import com.dev.project.repository.EmployeeRepository;
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
-public class EmployeeService implements BaseService<Employee, Long> {
+public class EmployeeService {
+
+    private final EmployeeRepository employeeRepository;
 
     @Autowired
-    private EmployeeRepository employeeRepository;
+    public EmployeeService(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
+    }
 
-    @Override
     public List<Employee> getAll() {
         return employeeRepository.findAll();
     }
 
-    @Override
     public void save(Employee employee) {
         employeeRepository.save(employee);
     }
 
-    @Override
     public Employee getByID(Long id) {
         Optional<Employee> optionalEmployee = employeeRepository.findById(id);
         return optionalEmployee.orElse(null);
     }
 
-    @Override
     public void deleteById(Long id) {
         employeeRepository.deleteById(id);
+    }
+
+    public void updateEmployee(Long id, Employee updatedEmployee) {
+        Optional<Employee> optionalEmployee = employeeRepository.findById(id);
+        if (optionalEmployee.isPresent()) {
+            Employee existingEmployee = optionalEmployee.get();
+            // Cập nhật thông tin từ updatedEmployee vào existingEmployee
+            existingEmployee.setFirstName(updatedEmployee.getFirstName());
+            existingEmployee.setLastName(updatedEmployee.getLastName());
+            // Cập nhật các trường khác nếu cần
+            employeeRepository.save(existingEmployee);
+        }
     }
 }

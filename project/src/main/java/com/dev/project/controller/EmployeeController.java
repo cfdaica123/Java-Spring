@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @Controller
 @RequestMapping("/employees")
 public class EmployeeController {
@@ -48,7 +49,7 @@ public class EmployeeController {
 
     @PostMapping("/edit/{id}")
     public String updateEmployee(@PathVariable Long id, @ModelAttribute("employee") Employee updatedEmployee) {
-        employeeService.save(updatedEmployee);
+        employeeService.updateEmployee(id, updatedEmployee);
         return "redirect:/employees";
     }
 

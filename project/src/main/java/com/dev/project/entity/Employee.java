@@ -184,9 +184,22 @@ public class Employee {
         this.leaveRequests = leaveRequests;
     }
 
-    public Nationality getNationalities() {
+    public Nationality getNationality() {
         return nationality;
     }
+    
+    public void setNationality(Nationality nationality) {
+        // Kiểm tra null nếu cần thiết
+        if (nationality != null) {
+            this.nationality = nationality;
+        } else {
+            // Xử lý trường hợp giá trị null không được chấp nhận
+            // Ví dụ: có thể throw một IllegalArgumentException
+            throw new IllegalArgumentException("Nationality cannot be null");
+        }
+    }
+    
+    
     
 
     public List<Skill> getSkills() {

@@ -11,7 +11,6 @@
 <h2>Edit Employee</h2>
 
 <form th:action="@{/employees/edit/{id}(id=${employee.employeeId})}" th:object="${employee}" method="post">
-    <!-- Add form fields for employee properties -->
     <label>First Name: <input type="text" th:field="*{firstName}" /></label><br/>
     <label>Last Name: <input type="text" th:field="*{lastName}" /></label><br/>
     <!-- Add other form fields as needed -->
